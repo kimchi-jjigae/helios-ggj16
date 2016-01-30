@@ -4,7 +4,8 @@ using System.Collections;
 public class HeliosController : MonoBehaviour {
 
     Rigidbody2D mRigidbody2d;
-    public float mForceScalar;
+    public float mForceScalarX;
+    public float mForceScalarY;
     public float mGravityFactor;
 
     // position offset stuff //
@@ -28,8 +29,8 @@ public class HeliosController : MonoBehaviour {
         mRigidbody2d.position = mPositionBeforeOffset;
 	    float hMovement = Input.GetAxis("Horizontal");
 	    float vMovement = Input.GetAxis("Vertical");
-        Vector2 force = new Vector2(hMovement, vMovement);
-        mRigidbody2d.AddForce(force * mForceScalar);
+        Vector2 force = new Vector2(hMovement * mForceScalarX, vMovement * mForceScalarY);
+        mRigidbody2d.AddForce(force);
 
         // manual gravity //
         Vector2 gravity = new Vector2(0.0f, -mGravityFactor);
