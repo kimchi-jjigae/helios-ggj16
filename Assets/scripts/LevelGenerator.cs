@@ -16,7 +16,7 @@ public class LevelGenerator : MonoBehaviour {
 	    mDegreesBetweenObjects = 360.0f / (float)mNumberOfObstacles;
         for(int i = 0; i < mNumberOfObstacles; ++i) {
             float rotation = mDegreesBetweenObjects * i;
-            if(!InWater(rotation)) {
+            if(!InWater(rotation) && !RandomlyEliminated()) {
                 GameObject newObstacle = Instantiate(mObjectList.ReturnRandomObject(), transform.position, transform.rotation) as GameObject;
                 newObstacle.transform.parent = transform;
                 newObstacle.transform.Rotate(new Vector3(0, 0, rotation - 90));
@@ -47,5 +47,9 @@ public class LevelGenerator : MonoBehaviour {
             }
         }
         return inWater;
+    }
+
+    bool RandomlyEliminated() {
+        return Random.Range(0, 20) == 1;
     }
 }

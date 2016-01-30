@@ -9,10 +9,10 @@ public class HeliosController : MonoBehaviour {
     public float mGravityFactor;
 
     // position offset stuff //
-    float mLimitX = 0.1f;
-    float mLimitY = 0.3f;
-    float mTimeFactorX = 1.3f;
-    float mTimeFactorY = 2.0f;
+    public float mLimitX;
+    public float mLimitY;
+    public float mTimeFactorX;
+    public float mTimeFactorY;
     Vector2 mPositionBeforeOffset;
 
     //Vector2 mPositionBounds;
@@ -29,6 +29,7 @@ public class HeliosController : MonoBehaviour {
         mRigidbody2d.position = mPositionBeforeOffset;
 	    float hMovement = Input.GetAxis("Horizontal");
 	    float vMovement = Input.GetAxis("Vertical");
+        if(vMovement < 0.0f) vMovement = 0.0f;
         Vector2 force = new Vector2(hMovement * mForceScalarX, vMovement * mForceScalarY);
         mRigidbody2d.AddForce(force);
 
