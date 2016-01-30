@@ -5,14 +5,16 @@ public class HeliosController : MonoBehaviour {
 
     Rigidbody2D mRigidbody2d;
     public float mForceScalar;
-    //Vector2 mPositionBounds;
+    public float mGravityFactor;
+
     // position offset stuff //
     float mLimitX = 0.1f;
     float mLimitY = 0.3f;
-    float mTimeFactorX = 1.0f;
+    float mTimeFactorX = 1.3f;
     float mTimeFactorY = 2.0f;
-
     Vector2 mPositionBeforeOffset;
+
+    //Vector2 mPositionBounds;
 
 	void Start() {
         //mScreenBounds = new Vector2(10.0f, 10.0f);
@@ -22,13 +24,19 @@ public class HeliosController : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
+        // player input force //
         mRigidbody2d.position = mPositionBeforeOffset;
 	    float hMovement = Input.GetAxis("Horizontal");
 	    float vMovement = Input.GetAxis("Vertical");
         Vector2 force = new Vector2(hMovement, vMovement);
         mRigidbody2d.AddForce(force * mForceScalar);
+
+        // manual gravity //
+        Vector2 gravity = new Vector2(0.0f, -mGravityFactor);
+        mRigidbody2d.AddForce(gravity);
         mPositionBeforeOffset = mRigidbody2d.position;
 
+        // positional offset //
         float offsetX = mLimitX * Mathf.Sin(Time.time * mTimeFactorX);
         float offsetY = mLimitY * Mathf.Cos(Time.time * mTimeFactorY);
         Vector2 positionOffset = new Vector2(offsetX, offsetY);
