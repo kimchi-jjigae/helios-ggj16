@@ -4,8 +4,8 @@ using System.Collections;
 public class ForceAdder : MonoBehaviour {
 
     Rigidbody2D mRigidbody2d;
-    public float mForceScalarX;
-    public float mForceScalarY;
+    public float mPlayerForceScalarX;
+    public float mPlayerForceScalarY;
     public float mSideGravity;
     public float mUpGravity;
 
@@ -17,7 +17,7 @@ public class ForceAdder : MonoBehaviour {
 	void FixedUpdate () {
 	    float hMovement = Input.GetAxis("Horizontal");
 	    float vMovement = Input.GetAxis("Vertical");
-        Vector2 force = new Vector2(-hMovement * mForceScalarX, -vMovement * mForceScalarY);
+        Vector2 force = new Vector2(-hMovement * mPlayerForceScalarX, -vMovement * mPlayerForceScalarY);
         mRigidbody2d.AddForce(force);
 
         Vector2 gravity = new Vector2(-mSideGravity, mUpGravity);
