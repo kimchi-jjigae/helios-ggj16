@@ -18,9 +18,14 @@ public class LevelGenerator : MonoBehaviour {
             float rotation = mDegreesBetweenObjects * i;
             if(!InWater(rotation) && !RandomlyEliminated()) {
                 GameObject newObstacle = Instantiate(mObjectList.ReturnRandomObject(), transform.position, transform.rotation) as GameObject;
+                float offset = 0.0f;
+                if(newObstacle.tag == "cow") {
+                    offset = 1.2f;
+                }
+                float length = mPlanetRadius - offset;
                 newObstacle.transform.parent = transform;
                 newObstacle.transform.Rotate(new Vector3(0, 0, rotation - 90));
-                newObstacle.transform.localPosition = PolarToCartesian(rotation, mPlanetRadius);
+                newObstacle.transform.localPosition = PolarToCartesian(rotation, length);
             }
         }
 	}

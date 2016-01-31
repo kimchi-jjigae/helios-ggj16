@@ -4,6 +4,7 @@ using System.Collections;
 public class CowRunner : MonoBehaviour {
 
     public float mRunSpeed;
+    public float mRunLimit;
     float mRunAccumulator;
 
 	// Use this for initialization
@@ -21,7 +22,7 @@ public class CowRunner : MonoBehaviour {
         transform.localPosition = PolarToCartesian(th, r);
         transform.Rotate(new Vector3(0, 0, mRunSpeed));
         mRunAccumulator+= mRunSpeed;
-        if(mRunAccumulator > 30.0f) {
+        if(mRunAccumulator > mRunLimit) {
             Destroy(gameObject);
         }
 	}
