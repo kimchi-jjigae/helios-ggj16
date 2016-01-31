@@ -4,9 +4,11 @@ using System.Collections;
 public class ObjectCollisionHandler : MonoBehaviour {
 
     SFXPlayer sfx;
+    LevelController level;
 
     void Awake() {
         sfx = GameObject.Find("SFX").GetComponent<SFXPlayer>();
+        level = GameObject.Find("LevelController").GetComponent<LevelController>();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -25,6 +27,7 @@ public class ObjectCollisionHandler : MonoBehaviour {
         else if(gameObject.tag == "house") {
             sfx.PlayIgnite();
         }
+        level.LifeLost();
         Destroy(gameObject);
     }
 }

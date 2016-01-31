@@ -6,7 +6,7 @@ public class HeliosController : MonoBehaviour {
     Rigidbody2D mRigidbody2d;
     public float mPlayerForceScalarX;
     public float mPlayerForceScalarY;
-    public float mGravityFactor;
+    public float mFloatFactor;
 
     // position offset stuff //
     public float mHoverLimitX;
@@ -38,7 +38,7 @@ public class HeliosController : MonoBehaviour {
         mRigidbody2d.AddForce(force);
 
         // manual gravity //
-        Vector2 gravity = new Vector2(0.0f, -mGravityFactor);
+        Vector2 gravity = new Vector2(0.0f, mFloatFactor);
         mRigidbody2d.AddForce(gravity);
 
         // position nerfer //

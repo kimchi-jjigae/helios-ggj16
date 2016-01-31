@@ -7,7 +7,7 @@ public class ForceAdder : MonoBehaviour {
     public float mPlayerForceScalarX;
     public float mPlayerForceScalarY;
     public float mSideGravity;
-    public float mUpGravity;
+    public float mGravityFactor;
 
 	void Start () {
         mRigidbody2d = GetComponent<Rigidbody2D>();
@@ -20,7 +20,7 @@ public class ForceAdder : MonoBehaviour {
         Vector2 force = new Vector2(-hMovement * mPlayerForceScalarX, -vMovement * mPlayerForceScalarY);
         mRigidbody2d.AddForce(force);
 
-        Vector2 gravity = new Vector2(-mSideGravity, mUpGravity);
+        Vector2 gravity = new Vector2(-mSideGravity, -mGravityFactor);
         mRigidbody2d.AddForce(gravity);
 	}
 }
