@@ -6,6 +6,8 @@ public class LevelController : MonoBehaviour {
 
     public Text mLivesText;
     public Text mLevelText;
+    public Text mDayText;
+    public Image mDaySprite;
     public Rotater mRotater;
     public LevelGenerator mLevelGenerator;
 
@@ -14,22 +16,25 @@ public class LevelController : MonoBehaviour {
 
 	void Start() {
         mLevelNumber = 1;
-	    mLifeAmount = 5;
+	    mLifeAmount = 0;
+        Time.timeScale = 0.0f;// pauses
+        mDayText.gameObject.SetActive(true);
 	}
 	
     public void LifeLost() {
-        if(mLifeAmount == 0) {
-            GameOver();
-        }
-        else {
-            mLifeAmount--;
-            mLivesText.text = "LIVES: " + mLifeAmount;
-        }
+        mLifeAmount++;
+        mLivesText.text = "DESTRUCTION CAUSED: " + mLifeAmount;
     }
 
     public void LevelFinish() {
+        Time.timeScale = 0.0f;// pauses
         mLevelNumber++;
-        mLevelText.text = "LEVEL: " + mLevelNumber;
+        mDaySprite.overrideSprite = Resources.Load<Sprite>("Assets/sprites/numbers/n" + mLevelNumber);
+        mDayText.gameObject.SetActive(true);
+        mDaySprite.gameObject.SetActive(true);
+        mLivesText.gameObject.SetActive(false);
+        mLevelText.gameObject.SetActive(false);
+        mLevelText.text = "DAY: " + mLevelNumber;
         mRotater.NewLevel();
         mLevelGenerator.NewLevel();
     }
