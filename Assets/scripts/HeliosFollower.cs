@@ -4,6 +4,7 @@ using System.Collections;
 public class HeliosFollower : MonoBehaviour {
 
     public GameObject mObjectToFollow;
+    public Vector3 mOffset;
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +13,6 @@ public class HeliosFollower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    transform.localPosition = mObjectToFollow.transform.position;
+	    transform.localPosition = mObjectToFollow.transform.position + mOffset;
 	}
 }

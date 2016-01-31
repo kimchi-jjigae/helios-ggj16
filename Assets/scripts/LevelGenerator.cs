@@ -48,7 +48,7 @@ public class LevelGenerator : MonoBehaviour {
     }
 
     bool RandomlyEliminated() {
-        return Random.Range(0, 20) == 1;
+        return Random.Range(0, 20) < 16;
     }
 
     public void NewLevel() {
