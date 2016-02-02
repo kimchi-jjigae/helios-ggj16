@@ -12,11 +12,10 @@ public class PressToSkip : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
-        if(Input.GetKeyDown("space")) {
-            gameObject.SetActive(false);
-            mDayNumber.gameObject.SetActive(false);
+        if(Input.anyKeyDown) {
+            GetComponent<OpacityFader>().StartFading();
+            mDayNumber.gameObject.GetComponent<OpacityFader>().StartFading();
             mLivesText.gameObject.SetActive(true);
             mLevelText.gameObject.SetActive(true);
             Time.timeScale = 1.0f;

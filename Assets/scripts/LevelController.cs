@@ -27,11 +27,13 @@ public class LevelController : MonoBehaviour {
     }
 
     public void LevelFinish() {
-        Time.timeScale = 0.0f;// pauses
         mLevelNumber++;
-        mDaySprite.overrideSprite = Resources.Load<Sprite>("Assets/sprites/numbers/n" + mLevelNumber);
+        string num = "numbers/n" + mLevelNumber;
+        mDaySprite.sprite = Resources.Load<Sprite>(num);
         mDayText.gameObject.SetActive(true);
+        mDayText.gameObject.GetComponent<OpacityFader>().StartAppearing();
         mDaySprite.gameObject.SetActive(true);
+        mDaySprite.gameObject.GetComponent<OpacityFader>().StartAppearing();
         mLivesText.gameObject.SetActive(false);
         mLevelText.gameObject.SetActive(false);
         mLevelText.text = "DAY: " + mLevelNumber;
