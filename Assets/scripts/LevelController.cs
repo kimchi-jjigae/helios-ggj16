@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour {
     public Text mLevelText;
     public Text mDayText;
     public Image mDaySprite;
+    public Image mDaySprite2;
     public Rotater mRotater;
     public LevelGenerator mLevelGenerator;
 
@@ -28,8 +29,21 @@ public class LevelController : MonoBehaviour {
 
     public void LevelFinish() {
         mLevelNumber++;
-        string num = "numbers/n" + mLevelNumber;
-        mDaySprite.sprite = Resources.Load<Sprite>(num);
+        if(mLevelNumber < 10) {
+            string picpath = "numbers/n" + mLevelNumber;
+            mDaySprite.sprite = Resources.Load<Sprite>(picpath);
+        }
+        else {
+            int num1 = mLevelNumber % 10;
+            int num2 = mLevelNumber / 10;
+            string picpath = "numbers/n" + num1;
+            mDaySprite.sprite = Resources.Load<Sprite>(picpath);
+            picpath = "numbers/n" + num2;
+            mDaySprite2.sprite = Resources.Load<Sprite>(picpath);
+
+            mDaySprite2.gameObject.SetActive(true);
+            mDaySprite2.gameObject.GetComponent<OpacityFader>().StartAppearing();
+        }
         mDayText.gameObject.SetActive(true);
         mDayText.gameObject.GetComponent<OpacityFader>().StartAppearing();
         mDaySprite.gameObject.SetActive(true);
